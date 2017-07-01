@@ -1,0 +1,39 @@
+<!DOCYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>myserver</title>
+    </head>
+    <body>
+        <h1>Wolf Home Online</h1>
+        <div><div style="float:left">senser1  :  </div><div id="p1" style="float:left">****</div></div>
+    </body>
+    <script>
+        function getdate(senser_id)
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById(senser_id).innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET","date.txt",true);
+            xmlhttp.send(); 
+        }
+        function timercalback()
+        {
+            getdate("p1");
+        }
+        window.setInterval("timercalback()",1000);
+    </script>
+</html>
