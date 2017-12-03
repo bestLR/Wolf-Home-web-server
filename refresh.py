@@ -1,3 +1,4 @@
+#!usr/bin/python3
 import random
 from socket import *
 ResponseHeader=b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nAccept-Ranges: bytes\r\n\r\n"
