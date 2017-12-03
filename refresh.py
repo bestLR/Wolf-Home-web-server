@@ -1,9 +1,20 @@
 import random
 from socket import *
 ResponseHeader=b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nAccept-Ranges: bytes\r\n\r\n"
-HOST='localhost'
+
+def get_host_ip():
+    try:
+        s = socket(AF_INET,SOCK_DGRAM)
+        s.connect(('8.8.8.8', 80))       
+        ip = s.getsockname()[0]
+    finally:
+        s.close()
+
+    return ip
+HOST=get_host_ip()
 PORT=7921
 ADDR=(HOST,PORT)
+print(str(HOST)+':'+str(PORT))
 s=socket(AF_INET,SOCK_STREAM)
 s.bind(ADDR)
 s.listen(5)
